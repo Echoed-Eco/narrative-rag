@@ -1,9 +1,11 @@
-from src.llm import chat
+import sys
 
-print(chat(
-    [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Say hi in one sentence."},
-    ],
-    reasoning_effort="low",
-))
+from src.rag import answer
+
+question = " ".join(sys.argv[1:]) or "Tell me about Ilneva"
+text, hits = answer(question)
+
+print(text)
+print("\nRetrieved:")
+for chunk, score in hits:
+    print(f"  {chunk.chunk_id} | {chunk.heading} (score {score:.3f})")
