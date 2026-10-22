@@ -7,3 +7,4 @@ data/private/
 .DS_Store
 settings.json
 chunks_dump.py
+chunks_dump.txt
